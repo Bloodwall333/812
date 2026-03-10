@@ -1,334 +1,190 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glass Vermelho & Preto • TG</title>
+  <title>DisKonkordat • credentials</title>
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
     }
 
     body {
       min-height: 100vh;
-      background: radial-gradient(circle at 10% 20%, #1a0000, #000000 90%);
+      background: #000000;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
       display: flex;
       align-items: center;
-      justify-content: center; um
-      position: relative;
-      overflow: hidden;
+      justify-content: center;
+      padding: 1.5rem;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    /* partículas líquidas / glass blobs */
-    .blob {
-      position: absolute;
-      width: 400px;
-      height: 400px;
-      background: rgba(180, 0, 0, 0.12);
-      border-radius: 62% 38% 42% 58% / 37% 53% 47% 63%;
-      filter: blur(45px) brightness(1.2);
-      z-index: 0;
-      animation: liquidMove 22s infinite alternate ease-in-out;
+    /* glass card — iOS style, minimal, sharp, serious */
+    .glass-panel {
+      max-width: 480px;
+      width: 100%;
+      background: rgba(22, 22, 22, 0.75);
+      backdrop-filter: blur(25px) saturate(180%);
+      -webkit-backdrop-filter: blur(25px) saturate(180%);
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8),
+                  0 0 0 1px rgba(180, 0, 0, 0.2) inset,
+                  0 0 20px rgba(150, 0, 0, 0.3);
+      padding: 2.5rem 2rem;
+      transition: all 0.2s ease;
     }
 
-    .blob-1 {
-      top: -100px;
-      left: -100px;
-      background: rgba(220, 20, 20, 0.2);
-      width: 550px;
-      height: 500px;
-      animation-duration: 19s;
-      animation-delay: -3s;
+    .glass-panel:hover {
+      border-color: rgba(200, 40, 40, 0.3);
+      box-shadow: 0 24px 48px rgba(140, 0, 0, 0.3),
+                  0 0 0 1.5px rgba(200, 0, 0, 0.3) inset;
     }
 
-    .blob-2 {
-      bottom: -80px;
-      right: -60px;
-      background: rgba(150, 0, 0, 0.15);
-      width: 600px;
-      height: 600px;
-      border-radius: 70% 30% 48% 52% / 41% 65% 35% 59%;
-      filter: blur(60px);
-      animation: liquidMove 25s infinite alternate-reverse;
+    /* content layout — clean, corporate */
+    .credentials {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
     }
 
-    .blob-3 {
-      top: 40%;
-      left: 60%;
-      width: 320px;
-      height: 320px;
-      background: rgba(200, 0, 0, 0.1);
-      filter: blur(70px);
-      animation: liquidMove 18s infinite alternate;
+    /* each row — like iOS settings / credential card */
+    .row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
 
-    @keyframes liquidMove {
-      0% {
-        border-radius: 62% 38% 42% 58% / 37% 53% 47% 63%;
-        transform: translate(0, 0) scale(1) rotate(0deg);
-      }
-      33% {
-        border-radius: 27% 73% 38% 62% / 51% 44% 56% 49%;
-        transform: translate(30px, -30px) scale(1.1) rotate(5deg);
-      }
-      66% {
-        border-radius: 74% 26% 59% 41% / 32% 68% 32% 68%;
-        transform: translate(-20px, 20px) scale(0.95) rotate(-3deg);
-      }
-      100% {
-        border-radius: 42% 58% 29% 71% / 60% 33% 67% 40%;
-        transform: translate(10px, -10px) scale(1.05) rotate(2deg);
-      }
-    }
-
-    /* cartão principal — vidro líquido */
-    .glass-card {
-      position: relative;
-      z-index: 10;
-      max-width: 580px;
-      width: 90%;
-      margin: 2rem;
-      padding: 3rem 2.5rem;
-      background: rgba(10, 0, 0, 0.25);
-      backdrop-filter: blur(14px) saturate(180%);
-      -webkit-backdrop-filter: blur(14px) saturate(180%);
-      border: 2px solid rgba(200, 0, 0, 0.35);
-      border-radius: 70px 30px 70px 30px;
-      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.7),
-                  inset 0 0 40px rgba(255, 0, 0, 0.2),
-                  0 0 0 2px rgba(180, 0, 0, 0.3) inset;
-      transition: border-radius 0.5s ease, box-shadow 0.4s;
-      text-align: center;
-      color: white;
-      animation: floatGlass 6s infinite alternate ease-in-out;
-    }
-
-    .glass-card:hover {
-      border-radius: 40px 60px 40px 60px;
-      border-color: rgba(220, 40, 40, 0.7);
-      box-shadow: 0 40px 70px rgba(180, 0, 0, 0.4),
-                  inset 0 0 60px rgba(255, 60, 60, 0.3);
-    }
-
-    @keyframes floatGlass {
-      0% {
-        transform: translateY(0) scale(1);
-      }
-      100% {
-        transform: translateY(-10px) scale(1.01);
-      }
-    }
-
-    /* título / username */
-    .username {
-      font-size: 2.7rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      word-break: break-word;
-      background: linear-gradient(135deg, #ffb3b3, #ff4d4d, #cc0000);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      text-shadow: 0 0 25px rgba(255, 0, 0, 0.7), 2px 2px 5px black;
-      margin-bottom: 1.5rem;
-      border-bottom: 3px dashed rgba(255, 60, 60, 0.5);
-      padding-bottom: 0.5rem;
-      display: inline-block;
-    }
-
-    .username::before {
-      content: "✧ ";
-      font-size: 2rem;
-      color: #ff5e5e;
-      filter: drop-shadow(0 0 8px red);
-    }
-
-    .username::after {
-      content: " ✧";
-      font-size: 2rem;
-      color: #ff5e5e;
-      filter: drop-shadow(0 0 8px red);
-    }
-
-    /* separador líquido */
-    .divider {
-      width: 80%;
-      height: 3px;
-      margin: 2rem auto 2.5rem;
-      background: linear-gradient(90deg, transparent, #ff3a3a, #a10000, #ff3a3a, transparent);
-      border-radius: 100%;
-      filter: blur(1.5px);
-      box-shadow: 0 0 20px #ff2a2a;
-    }
-
-    /* blocos de link */
-    .link-block {
-      margin: 2.2rem 0;
-      padding: 0.8rem 1.2rem;
-      background: rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 50, 50, 0.7);
-      border-radius: 60px 20px 60px 20px;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      box-shadow: 0 8px 0 #3a0000, 0 10px 25px black;
-    }
-
-    .link-block:hover {
-      border-radius: 30px 60px 30px 60px;
-      border-color: #ff7777;
-      background: rgba(25, 0, 0, 0.7);
-      transform: scale(1.02) translateY(-5px);
-      box-shadow: 0 12px 0 #520000, 0 20px 35px #330000;
-    }
-
-    .link-label {
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 5px;
-      font-weight: 300;
-      color: #ffa0a0;
-      display: block;
-      margin-bottom: 0.25rem;
-      text-shadow: 0 0 8px red;
-    }
-
-    .link-url {
-      font-size: 1.5rem;
+    .label {
+      font-size: 0.85rem;
       font-weight: 500;
-      word-break: break-all;
-      color: white;
-      text-decoration: none;
-      background: linear-gradient(135deg, #fff0f0, #ffcaca);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      transition: all 0.2s;
-      display: inline-block;
-      padding: 0.2rem 0.8rem;
-      border-radius: 40px;
-      text-shadow: 0 0 15px #ff4f4f;
-    }
-
-    .link-url:hover {
-      background: linear-gradient(135deg, #ffe0e0, #ffa0a0);
-      -webkit-background-clip: text;
-      background-clip: text;
-      text-decoration: underline wavy #ff3b3b 2px;
-      text-underline-offset: 6px;
-    }
-
-    /* estilo específico para o link do grupo (destacar) */
-    .group-link .link-url {
-      font-size: 1.7rem;
-      font-weight: 600;
-      background: linear-gradient(145deg, #ff7b7b, #ff3434);
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
-
-    .group-link {
-      border: 2px solid #b30000;
-      background: rgba(40, 0, 0, 0.7);
-      box-shadow: 0 8px 0 #6b0000, 0 10px 30px black, 0 0 15px #ff0000 inset;
-    }
-
-    /* cantos decorativos */
-    .corner {
-      position: absolute;
-      font-size: 3rem;
-      opacity: 0.25;
-      color: #a00;
-      filter: blur(3px) drop-shadow(0 0 10px red);
-      z-index: 5;
-      pointer-events: none;
-    }
-
-    .corner-1 { top: 10px; left: 15px; transform: rotate(-15deg); }
-    .corner-2 { bottom: 10px; right: 15px; transform: rotate(165deg); }
-    .corner-3 { top: 20%; right: 5%; font-size: 5rem; opacity: 0.2; }
-
-    /* small print / apoio */
-    .caption {
-      margin-top: 2rem;
-      font-size: 0.8rem;
-      color: #a55;
-      letter-spacing: 2px;
+      letter-spacing: 0.5px;
       text-transform: uppercase;
-      border-top: 1px dashed #5a0000;
-      padding-top: 1.2rem;
+      color: #a8a8a8;
+      margin-left: 0.5rem;
     }
 
-    .caption span {
-      color: #c44;
-      font-weight: 600;
-      filter: drop-shadow(0 0 5px red);
+    .value {
+      background: rgba(40, 40, 40, 0.7);
+      border-radius: 18px;
+      padding: 1rem 1.5rem;
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #f0f0f0;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-bottom: 2px solid rgba(180, 0, 0, 0.5);
+      transition: border 0.15s ease, background 0.15s ease;
+      word-break: break-word;
+      backdrop-filter: blur(5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     }
 
-    /* responsividade */
-    @media (max-width: 500px) {
-      .glass-card {
-        padding: 2rem 1.2rem;
+    /* special style for the link (interactive, but still minimal) */
+    .link-value {
+      display: inline-block;
+      width: 100%;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      background: rgba(50, 10, 10, 0.4);
+      border-bottom: 2px solid #8b0000;
+      border-radius: 16px;
+      padding: 1rem 1.5rem;
+      transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .link-value:hover {
+      background: rgba(100, 20, 20, 0.5);
+      border-bottom-color: #cf0a0a;
+      box-shadow: 0 6px 14px rgba(150, 0, 0, 0.4);
+    }
+
+    .link-value:active {
+      transform: scale(0.99);
+      background: rgba(70, 10, 10, 0.7);
+    }
+
+    /* subtle red accents, no emojis, just pure structural design */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(200, 0, 0, 0.4), rgba(200, 0, 0, 0.7), rgba(200, 0, 0, 0.4), transparent);
+      margin: 0.5rem 0;
+      border: 0;
+    }
+
+    /* very discreet footer – only as a visual anchor */
+    .footer-note {
+      margin-top: 1.5rem;
+      text-align: right;
+      font-size: 0.7rem;
+      color: #444;
+      letter-spacing: 0.8px;
+      font-weight: 400;
+      border-top: 0.5px solid rgba(150, 0, 0, 0.25);
+      padding-top: 1rem;
+    }
+
+    .footer-note span {
+      color: #5e5e5e;
+    }
+
+    /* mono / clean spacing */
+    .mono {
+      font-family: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+      letter-spacing: -0.02em;
+    }
+
+    /* no decoration, just information */
+    .username-field .value {
+      border-left: 3px solid #b31b1b;
+      background: rgba(20, 20, 20, 0.8);
+    }
+
+    /* completely emoji-free, iOS-inspired, corporate-dark */
+    @media (max-width: 400px) {
+      .glass-panel {
+        padding: 1.75rem 1.25rem;
       }
-      .username {
-        font-size: 2rem;
-      }
-      .link-url {
-        font-size: 1.2rem;
-      }
-      .group-link .link-url {
-        font-size: 1.4rem;
+      .value, .link-value {
+        font-size: 1rem;
+        padding: 0.85rem 1.2rem;
       }
     }
   </style>
 </head>
 <body>
-  <!-- blobs líquidos animados (glass orgânico) -->
-  <div class="blob blob-1"></div>
-  <div class="blob blob-2"></div>
-  <div class="blob blob-3"></div>
+  <div class="glass-panel">
+    <div class="credentials">
+      
+      <!-- username row: clean, label "username" (professional) -->
+      <div class="row username-field">
+        <div class="label">username</div>
+        <div class="value mono">@Diskonkordat</div>
+      </div>
 
-  <!-- elementos de canto apenas para textura -->
-  <div class="corner corner-1">⛓️‍🔥</div>
-  <div class="corner corner-2">⛓️‍🔥</div>
-  <div class="corner corner-3">💧</div>
-
-  <!-- cartão principal glass líquido -->
-  <main class="glass-card">
-    <div>
-      <!-- username com estilo TG -->
-      <div class="username">TG; @Diskonkordat</div>
-
-      <!-- divisor líquido -->
+      <!-- subtle separator (invisible but structural) -->
       <div class="divider"></div>
 
-      <!-- primeiro link (normal) -> propositalmente colocamos o group em destaque, mas ambos estão aqui -->
-      <!-- o primeiro link pode ser o username também? mas o pedido: "um link, um link e um username" -> username já está acima, então dois links distintos.
-           Vamos colocar um link relacionado e o group link exatamente como solicitado. O primeiro link será um "Canal" fictício para harmonizar -->
-      <div class="link-block">
-        <span class="link-label"> nn </span>
-        <a href="#" class="link-url" onclick="return false;">t.me/diskonkordat</a>
-        <!-- colocamos um link simbólico apenas para manter a estética, sem redirecionar (onclick false) -->
-      </div>
-
-      <!-- SEGUNDO LINK (principal) : group, exatamente como no pedido -->
-      <div class="link-block group-link">
-        <span class="link-label">Group</span>
-        <a href="https://t.me/+yb5xwyMuTiZkZDYx" target="_blank" rel="noopener noreferrer" class="link-url">
+      <!-- group link row: everything as requested, "Group;" included inside the clickable block -->
+      <div class="row">
+        <div class="label">group link</div>
+        <a href="https://t.me/+yb5xwyMuTiZkZDYx" target="_blank" rel="noopener noreferrer" class="link-value mono">
           Group; https://t.me/+yb5xwyMuTiZkZDYx
         </a>
+        <!-- the link includes the exact text "Group; https://..." to match specification -->
       </div>
 
-      <!-- detalhe sutil com "TG" e username de novo, porém apenas visual -->
-      <div class="caption">
-        <span> TG; @Diskonkordat </span>  •  vidro líquido ruby
+      <!-- minimal footer with subtle reference (no emoji, just a thin line) -->
+      <div class="footer-note">
+        <span>DisKonkordat • secure channel</span>
       </div>
     </div>
-  </main>
+  </div>
 
-  <!-- pequeno ajuste para garantir que o link do grupo fique exatamente como no texto do usuário -->
-  <!-- o link foi colocado com target _blank e texto completo "Group; https://..." -->
+  <!-- background hint: pure black with red glow only on card, very serious tone -->
 </body>
 </html>
